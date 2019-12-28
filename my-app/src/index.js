@@ -25,10 +25,10 @@ class WeightComponent extends React.Component{
             <form>
                 <label>
                     Enter your weight (in kg)
-                    <input type="text" name="name" value={this.props.value} onChange={this.props.onChange} />
+                    <input type="text" name="name" value={this.props.weight_value} onChange={this.props.onChange} />
                 </label>
                 {/* <input type="submit" value="Submit" /> */}
-                {this.props.value}
+                {this.props.weight_value}
             </form>
             
         );
@@ -52,13 +52,13 @@ class Interface extends React.Component{
     }
 
     handleChange(event) {
-        // this.setState({weight_val: event.target.value});
-        this.setState({value: event.target.value});
+        this.setState({weight_val: event.target.value});
+        // this.setState({value: event.target.value});
     }
 
     handleSubmit(event) {
         // alert('Your inputs: ' + this.state.weight_val);
-        alert('A name was submitted: ' + this.state.value);
+        alert('A name was submitted: ' + this.state.weight_val);
         event.preventDefault();
     }
 
@@ -68,7 +68,7 @@ class Interface extends React.Component{
             // "This is the main UI"
             <div>
                 <WeightComponent 
-                    value={this.state.value} 
+                    weight_value={this.state.weight_val} 
                     onChange={this.handleChange} 
                 />
                 <form onSubmit={() => this.handleSubmit()}>
