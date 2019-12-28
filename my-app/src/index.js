@@ -21,6 +21,22 @@ class WeightComponent extends React.Component{
     }
 }
 
+class HeightComponent extends React.Component{
+    render(){
+        return (
+            <form>
+                <label>
+                    Enter your heigh (in cms)
+                    <input type="text" name="name" value={this.props.height_value} onChange={this.props.onChange} />
+                </label>
+                {/* {this.props.weight_value} */}
+            </form>
+            
+        );
+    }
+}
+
+
 
 
 
@@ -32,16 +48,22 @@ class Interface extends React.Component{
             height_val: null,
         };
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleWeightChange = this.handleWeightChange.bind(this);
+        this.handleHeightChange = this.handleHeightChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
+    handleWeightChange(event) {
         this.setState({weight_val: event.target.value});
     }
 
+    handleHeightChange(event) {
+        this.setState({height_val: event.target.value});
+    }
+
+
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.weight_val);
+        alert('Weight: ' + this.state.weight_val + ' Height: ' + this.state.height_val);
         event.preventDefault();
     }
 
@@ -51,8 +73,13 @@ class Interface extends React.Component{
             <div>
                 <WeightComponent 
                     weight_value={this.state.weight_val} 
-                    onChange={this.handleChange} 
+                    onChange={this.handleWeightChange} 
                 />
+                <HeightComponent 
+                    height_value={this.state.height_val} 
+                    onChange={this.handleHeightChange} 
+                />
+
                 <form onSubmit={() => this.handleSubmit()}>
                     <input type="submit" value="Submit" />
                 </form>
