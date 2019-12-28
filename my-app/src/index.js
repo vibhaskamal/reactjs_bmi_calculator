@@ -7,28 +7,28 @@ import './index.css';
 //  BMI = (Weight/2.205) / (Height/39.37)2
 
 class WeightComponent extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            weight: '',
-        };
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //         weight: '',
+    //     };
 
-        this.handleChange = this.handleChange.bind(this);
-    }
+    //     this.handleChange = this.handleChange.bind(this);
+    // }
 
-    handleChange(event) {
-        this.setState({weight: event.target.value});
-    }
+    // handleChange(event) {
+    //     this.setState({weight: event.target.value});
+    // }
 
     render(){
         return (
             <form>
                 <label>
                     Enter your weight (in kg)
-                    <input type="text" name="name" value={this.state.weight} onChange={this.handleChange} />
+                    <input type="text" name="name" value={this.props.value} onChange={this.props.onChange} />
                 </label>
                 {/* <input type="submit" value="Submit" /> */}
-                {this.state.weight}
+                {this.props.value}
             </form>
             
         );
@@ -42,8 +42,9 @@ class Interface extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            weight_val: 0,
-            height_val: 0,
+            weight_val: null,
+            height_val: null,
+            value: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -51,11 +52,13 @@ class Interface extends React.Component{
     }
 
     handleChange(event) {
-        this.setState({weight_val: event.target.value});
+        // this.setState({weight_val: event.target.value});
+        this.setState({value: event.target.value});
     }
 
     handleSubmit(event) {
-        alert('Your inputs: ' + this.state.weight_val);
+        // alert('Your inputs: ' + this.state.weight_val);
+        alert('A name was submitted: ' + this.state.value);
         event.preventDefault();
     }
 
@@ -64,8 +67,11 @@ class Interface extends React.Component{
         return (
             // "This is the main UI"
             <div>
-                <WeightComponent value={this.state.weight_val} />
-                <form onSubmit={this.handleSubmit}>
+                <WeightComponent 
+                    value={this.state.value} 
+                    onChange={this.handleChange} 
+                />
+                <form onSubmit={() => this.handleSubmit()}>
                     <input type="submit" value="Submit" />
                 </form>
             </div>
