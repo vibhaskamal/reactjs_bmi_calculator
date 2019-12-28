@@ -14,13 +14,11 @@ class WeightComponent extends React.Component{
         };
 
         this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
         this.setState({weight: event.target.value});
     }
-
 
     render(){
         return (
@@ -38,12 +36,38 @@ class WeightComponent extends React.Component{
 }
 
 
+
+
 class Interface extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            weight_val: 0,
+            height_val: 0,
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({weight_val: event.target.value});
+    }
+
+    handleSubmit(event) {
+        alert('Your inputs: ' + this.state.weight_val);
+        event.preventDefault();
+    }
+
+
     render(){
         return (
             // "This is the main UI"
             <div>
-                <WeightComponent />
+                <WeightComponent value={this.state.weight_val} />
+                <form onSubmit={this.handleSubmit}>
+                    <input type="submit" value="Submit" />
+                </form>
             </div>
         );
     }
