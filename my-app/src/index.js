@@ -44,8 +44,9 @@ class Interface extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            weight_val: null,
-            height_val: null,
+            weight_val: undefined,
+            height_val: undefined,
+            // bmi: undefined,
         };
 
         this.handleWeightChange = this.handleWeightChange.bind(this);
@@ -63,8 +64,21 @@ class Interface extends React.Component{
 
 
     handleSubmit(event) {
-        alert('Weight: ' + this.state.weight_val + ' Height: ' + this.state.height_val);
+        let bmi = this.calculateBMI();
+        alert('BMI: ' + bmi.toFixed(2));
+        console.log(bmi);
         event.preventDefault();
+    }
+
+    calculateBMI() {
+        let bmi_value;
+        //  BMI = (Weight/2.205) / (Height/39.37)2
+        bmi_value = (this.state.weight_val/(this.state.height_val*this.state.height_val))*703;
+        // this.setState({
+        //     bmi: bmi_value,
+        // });
+
+        return bmi_value;
     }
 
 
@@ -75,13 +89,14 @@ class Interface extends React.Component{
                     weight_value={this.state.weight_val} 
                     onChange={this.handleWeightChange} 
                 />
+
                 <HeightComponent 
                     height_value={this.state.height_val} 
                     onChange={this.handleHeightChange} 
                 />
 
-                <form onSubmit={() => this.handleSubmit()}>
-                    <input type="submit" value="Submit" />
+                <form onSubmit={this.handleSubmit}>
+                    <input type="submit" value="Calculate BMI" />
                 </form>
             </div>
         );
