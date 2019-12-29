@@ -6,6 +6,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 // import App from './App';
 // import * as serviceWorker from './serviceWorker';
 
@@ -26,13 +28,24 @@ class WeightComponent extends React.Component{
                 className = 'form-center'
             >
                 <label>
-                    Enter your weight (in kg)
-                    <input 
+                    {/* Enter your weight (in kg) */}
+                    <InputGroup 
+                        size="sm"
+                        name="name" 
+                        value={this.props.weight_value} 
+                        onChange={this.props.onChange}
+                    >
+                        Enter your weight (in kg)    
+                        <FormControl
+                            placeholder="e.g. 50"
+                        />
+                    </InputGroup>
+                    {/* <input 
                         type="text" 
                         name="name" 
                         value={this.props.weight_value} 
                         onChange={this.props.onChange}
-                        />
+                        /> */}
                 </label>
                 {/* {this.props.weight_value} */}
                 
