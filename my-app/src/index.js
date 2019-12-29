@@ -4,7 +4,6 @@ import './index.css';
 // import App from './App';
 // import * as serviceWorker from './serviceWorker';
 
-//  BMI = (Weight/2.205) / (Height/39.37)2
 
 class WeightComponent extends React.Component{
     render(){
@@ -26,7 +25,7 @@ class HeightComponent extends React.Component{
         return (
             <form>
                 <label>
-                    Enter your heigh (in cms)
+                    Enter your height (in cms)
                     <input type="text" name="name" value={this.props.height_value} onChange={this.props.onChange} />
                 </label>
                 {/* {this.props.weight_value} */}
@@ -73,7 +72,8 @@ class Interface extends React.Component{
     calculateBMI() {
         let bmi_value;
         //  BMI = (Weight/2.205) / (Height/39.37)2
-        bmi_value = (this.state.weight_val/(this.state.height_val*this.state.height_val))*703;
+        // bmi_value = (this.state.weight_val/(this.state.height_val*this.state.height_val))*703;
+        bmi_value = (this.state.weight_val/(this.state.height_val*this.state.height_val));
         // this.setState({
         //     bmi: bmi_value,
         // });
