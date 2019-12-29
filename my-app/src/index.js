@@ -16,12 +16,6 @@ class WeightComponent extends React.Component{
     render(){
         return (
             <form 
-                // style={{
-                //     display: "flex",
-                //     justifyContent: "center",
-                //     alignItems: "center"
-                // }}
-                // style={}
                 className = 'form-center'
             >
                 <label>
@@ -116,13 +110,7 @@ class Interface extends React.Component{
 
     render(){
         return (
-            <div
-                // style={{
-                //     display: "flex",
-                //     justifyContent: "center",
-                //     alignItems: "center"
-                // }}
-            >
+            <div>
                 <WeightComponent 
                     weight_value={this.state.weight_val} 
                     onChange={this.handleWeightChange} 
@@ -134,11 +122,7 @@ class Interface extends React.Component{
                 />
 
                 <form 
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center"
-                    }}
+                    className='form-center'
                     onSubmit={this.handleSubmit}
                 >
                     <input type="submit" value="Calculate BMI" />
