@@ -4,16 +4,32 @@ import './index.css';
 // import App from './App';
 // import * as serviceWorker from './serviceWorker';
 
+// TODO
+// Add BMI value text : Done
+// Center align: Done
+// Validate input
+// Use framework for UI
+// Add option to toggle from metric to imperial system
+
 
 class WeightComponent extends React.Component{
     render(){
         return (
-            <form>
+            <form 
+                // style={{
+                //     display: "flex",
+                //     justifyContent: "center",
+                //     alignItems: "center"
+                // }}
+                // style={}
+                className = 'form-center'
+            >
                 <label>
                     Enter your weight (in kg)
                     <input type="text" name="name" value={this.props.weight_value} onChange={this.props.onChange} />
                 </label>
                 {/* {this.props.weight_value} */}
+                
             </form>
             
         );
@@ -23,14 +39,30 @@ class WeightComponent extends React.Component{
 class HeightComponent extends React.Component{
     render(){
         return (
-            <form>
+            <form 
+                className = 'form-center'
+            >
                 <label>
-                    Enter your height (in cms)
+                    Enter your height (in meter)
                     <input type="text" name="name" value={this.props.height_value} onChange={this.props.onChange} />
                 </label>
                 {/* {this.props.weight_value} */}
             </form>
             
+        );
+    }
+}
+
+class BMIDisplay extends React.Component{
+    render(){
+        return (
+            <form 
+                className = 'form-center'
+            >
+                <label>
+                    {this.props.bmi_result}
+                </label>
+            </form>
         );
     }
 }
@@ -45,7 +77,7 @@ class Interface extends React.Component{
         this.state = {
             weight_val: undefined,
             height_val: undefined,
-            // bmi: undefined,
+            bmi: undefined,
         };
 
         this.handleWeightChange = this.handleWeightChange.bind(this);
@@ -64,19 +96,19 @@ class Interface extends React.Component{
 
     handleSubmit(event) {
         let bmi = this.calculateBMI();
-        alert('BMI: ' + bmi.toFixed(2));
-        console.log(bmi);
+        // console.log(bmi);
+
+        this.setState({bmi: 'BMI: ' + bmi});
+        
+        // console.log('Done');
+        
         event.preventDefault();
     }
 
     calculateBMI() {
         let bmi_value;
-        //  BMI = (Weight/2.205) / (Height/39.37)2
-        // bmi_value = (this.state.weight_val/(this.state.height_val*this.state.height_val))*703;
         bmi_value = (this.state.weight_val/(this.state.height_val*this.state.height_val));
-        // this.setState({
-        //     bmi: bmi_value,
-        // });
+        bmi_value = bmi_value.toFixed(2);
 
         return bmi_value;
     }
@@ -84,7 +116,13 @@ class Interface extends React.Component{
 
     render(){
         return (
-            <div>
+            <div
+                // style={{
+                //     display: "flex",
+                //     justifyContent: "center",
+                //     alignItems: "center"
+                // }}
+            >
                 <WeightComponent 
                     weight_value={this.state.weight_val} 
                     onChange={this.handleWeightChange} 
@@ -95,9 +133,19 @@ class Interface extends React.Component{
                     onChange={this.handleHeightChange} 
                 />
 
-                <form onSubmit={this.handleSubmit}>
+                <form 
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
+                    }}
+                    onSubmit={this.handleSubmit}
+                >
                     <input type="submit" value="Calculate BMI" />
                 </form>
+
+                <BMIDisplay bmi_result={this.state.bmi} />
+                
             </div>
         );
     }
