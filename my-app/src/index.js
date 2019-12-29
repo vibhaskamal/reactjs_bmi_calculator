@@ -1,8 +1,13 @@
+// References
+// https://stackoverflow.com/questions/18082/validate-decimal-numbers-in-javascript-isnumeric
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
 // import * as serviceWorker from './serviceWorker';
+
+
 
 // TODO
 // Add BMI value text : Done
@@ -20,7 +25,12 @@ class WeightComponent extends React.Component{
             >
                 <label>
                     Enter your weight (in kg)
-                    <input type="text" name="name" value={this.props.weight_value} onChange={this.props.onChange} />
+                    <input 
+                        type="text" 
+                        name="name" 
+                        value={this.props.weight_value} 
+                        onChange={this.props.onChange}
+                        />
                 </label>
                 {/* {this.props.weight_value} */}
                 
@@ -80,7 +90,18 @@ class Interface extends React.Component{
     }
 
     handleWeightChange(event) {
-        this.setState({weight_val: event.target.value});
+        let user_input = event.target.value;
+        if (this.isNumeric(user_input))
+        {
+            this.setState({weight_val: event.target.value});
+        }
+        else
+        {
+            alert('Weight entry error: Please enter positive numbers only');
+            this.setState({weight_val: undefined});
+            event.target.value = null;
+        }
+        
     }
 
     handleHeightChange(event) {
@@ -105,6 +126,10 @@ class Interface extends React.Component{
         bmi_value = bmi_value.toFixed(2);
 
         return bmi_value;
+    }
+
+    isNumeric(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
     }
 
 
