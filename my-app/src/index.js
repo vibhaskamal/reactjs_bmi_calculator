@@ -12,7 +12,7 @@ import './index.css';
 // TODO
 // Add BMI value text : Done
 // Center align: Done
-// Validate input
+// Validate input: Done
 // Use framework for UI
 // Add option to toggle from metric to imperial system
 
