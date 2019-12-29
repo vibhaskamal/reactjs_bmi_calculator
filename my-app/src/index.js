@@ -4,6 +4,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
 // import App from './App';
 // import * as serviceWorker from './serviceWorker';
 
@@ -159,7 +161,8 @@ class Interface extends React.Component{
                     className='form-center'
                     onSubmit={this.handleSubmit}
                 >
-                    <input type="submit" value="Calculate BMI" />
+                    {/* <input type="submit" value="Calculate BMI" /> */}
+                    <Button variant="success" type="submit" value="Calculate BMI" >Calculate BMI</Button>
                 </form>
 
                 <BMIDisplay bmi_result={this.state.bmi} />
