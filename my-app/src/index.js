@@ -100,12 +100,21 @@ class Interface extends React.Component{
             alert('Weight entry error: Please enter positive numbers only');
             this.setState({weight_val: undefined});
             event.target.value = null;
-        }
-        
+        }  
     }
 
     handleHeightChange(event) {
-        this.setState({height_val: event.target.value});
+        let user_input = event.target.value;
+        if (this.isNumeric(user_input))
+        {
+            this.setState({height_val: event.target.value});
+        }
+        else
+        {
+            alert('Height entry error: Please enter positive numbers only');
+            this.setState({height_val: undefined});
+            event.target.value = null;
+        }
     }
 
 
