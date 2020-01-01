@@ -8,6 +8,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
+// import { Container, Row, Col } from 'reactstrap';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 
@@ -215,13 +219,20 @@ class Interface extends React.Component{
 
     render(){
         return (
-            <div>
-                <div 
-                    className = 'form-center'
-                >
-                    <Button color="info" onClick={this.handleMetricChange}>Metric System</Button>
-                    <Button color="info" onClick={this.handleImperialChange}>Imperial System</Button>
-                </div>
+            <Container>
+            
+                <Row>
+                    <Col sm={{ size: 'auto', offset: 3 }}>
+                        <Button color="info" onClick={this.handleMetricChange}>Metric System</Button>{' '}
+                    </Col>
+                    <Col sm={{ size: 'auto' }}>
+                        <Button color="info" onClick={this.handleImperialChange}>Imperial System</Button>{' '}
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col sm={{ size: 'auto', offset: 4 }}>Formula</Col>
+                </Row>
                 
                 <MetricImperial system={this.state.metric} />
 
@@ -248,7 +259,8 @@ class Interface extends React.Component{
 
                 <BMIDisplay bmi_result={this.state.bmi} />
                 
-            </div>
+           
+            </Container>
         );
     }
 }
