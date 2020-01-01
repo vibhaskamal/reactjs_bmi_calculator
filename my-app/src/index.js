@@ -17,7 +17,7 @@ import FormControl from 'react-bootstrap/FormControl';
 // Add BMI value text : Done
 // Center align: Done
 // Validate input: Done
-// Use framework for UI
+// Use framework for UI: Done
 // Add option to toggle from metric to imperial system
 
 
@@ -28,7 +28,6 @@ class WeightComponent extends React.Component{
                 className = 'form-center'
             >
                 <label>
-                    {/* Enter your weight (in kg) */}
                     <InputGroup 
                         size="sm"
                         name="name" 
@@ -40,12 +39,6 @@ class WeightComponent extends React.Component{
                             placeholder="e.g. 50"
                         />
                     </InputGroup>
-                    {/* <input 
-                        type="text" 
-                        name="name" 
-                        value={this.props.weight_value} 
-                        onChange={this.props.onChange}
-                        /> */}
                 </label>
                 {/* {this.props.weight_value} */}
                 
@@ -62,8 +55,20 @@ class HeightComponent extends React.Component{
                 className = 'form-center'
             >
                 <label>
-                    Enter your height (in meter)
-                    <input type="text" name="name" value={this.props.height_value} onChange={this.props.onChange} />
+                    <InputGroup 
+                        size="sm"
+                        name="name" 
+                        value={this.props.height_value} 
+                        onChange={this.props.onChange}
+                    >
+                        Enter your height (in meter)
+                        <FormControl
+                            placeholder="e.g. 1.6"
+                        />
+                    </InputGroup>
+
+                    {/* Enter your height (in meter)
+                    <input type="text" name="name" value={this.props.height_value} onChange={this.props.onChange} /> */}
                 </label>
                 {/* {this.props.weight_value} */}
             </form>
@@ -110,7 +115,7 @@ class Interface extends React.Component{
         {
             this.setState({weight_val: event.target.value});
         }
-        else
+        else if (user_input)
         {
             alert('Weight entry error: Please enter positive numbers only');
             this.setState({weight_val: undefined});
@@ -124,7 +129,7 @@ class Interface extends React.Component{
         {
             this.setState({height_val: event.target.value});
         }
-        else
+        else if (user_input)
         {
             alert('Height entry error: Please enter positive numbers only');
             this.setState({height_val: undefined});
