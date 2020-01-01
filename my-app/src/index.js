@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
+// import { Button } from 'reactstrap';
 // import App from './App';
 // import * as serviceWorker from './serviceWorker';
 
@@ -91,6 +92,17 @@ class BMIDisplay extends React.Component{
     }
 }
 
+class MetricImperial extends React.Component{
+    render(){
+        return(
+            <div className = 'form-center'>
+                <Button color="info">Metric System</Button>{" "}
+                <Button color="info">Imperial System</Button>
+            </div>
+        );
+    }
+}
+
 
 
 
@@ -102,11 +114,33 @@ class Interface extends React.Component{
             weight_val: undefined,
             height_val: undefined,
             bmi: undefined,
+            metric: 1,
+            // imperial: 0,
         };
 
         this.handleWeightChange = this.handleWeightChange.bind(this);
         this.handleHeightChange = this.handleHeightChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleMetricChange = this.handleMetricChange.bind(this);
+        this.handleImperialChange = this.handleImperialChange.bind(this);
+    }
+
+    handleMetricChange(event) {
+        this.setState(
+            {
+                metric: 1,
+                // imperial: 0,
+            }
+        );
+    }
+
+    handleImperialChange(event) {
+        this.setState(
+            {
+                metric: 0,
+                // imperial: 1,
+            }
+        );
     }
 
     handleWeightChange(event) {
@@ -151,10 +185,28 @@ class Interface extends React.Component{
 
     calculateBMI() {
         let bmi_value;
-        bmi_value = (this.state.weight_val/(this.state.height_val*this.state.height_val));
-        bmi_value = bmi_value.toFixed(2);
 
-        return bmi_value;
+        if (this.state.weight_val && this.state.height_val)
+        {
+            if (this.state.metric === 1)
+            {
+                bmi_value = (this.state.weight_val/(this.state.height_val*this.state.height_val));
+            }
+            else
+            {
+                bmi_value = (703*this.state.weight_val/(this.state.height_val*this.state.height_val));
+            }
+            
+            bmi_value = bmi_value.toFixed(2);
+    
+            return bmi_value;
+        }
+        else
+        {
+            alert('Enter BOTH weight and height values');
+            return 0;
+        }
+
     }
 
     isNumeric(n) {
@@ -165,15 +217,27 @@ class Interface extends React.Component{
     render(){
         return (
             <div>
-                <WeightComponent 
-                    weight_value={this.state.weight_val} 
-                    onChange={this.handleWeightChange} 
-                />
+                <div 
+                    className = 'form-center'
+                    // onSubmit={this.handleMetricChange}
+                >
+                    <Button color="info" onSubmit={this.handleMetricChange}>Metric System</Button>
+                    <Button color="info" onSubmit={this.handleImperialChange}>Imperial System</Button>
+                </div>
 
-                <HeightComponent 
-                    height_value={this.state.height_val} 
-                    onChange={this.handleHeightChange} 
-                />
+                <div>
+                    <WeightComponent 
+                        weight_value={this.state.weight_val} 
+                        onChange={this.handleWeightChange} 
+                    />
+                </div>
+
+                <div>
+                    <HeightComponent 
+                        height_value={this.state.height_val} 
+                        onChange={this.handleHeightChange} 
+                    />
+                </div>
 
                 <form 
                     className='form-center'
