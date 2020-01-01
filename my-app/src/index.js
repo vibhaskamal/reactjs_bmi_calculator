@@ -94,10 +94,23 @@ class BMIDisplay extends React.Component{
 
 class MetricImperial extends React.Component{
     render(){
+        let formula_metric = 'Weight(kg) / [Height(m)]^2';
+        let formula_imperial = '703 x Weight(lbs) / [Height(in)]^2';
+
+        let return_value;
+
+        if (this.props.system == 1)
+        {
+            return_value = formula_metric;
+        }
+        else
+        {
+            return_value = formula_imperial;
+        }
+
         return(
             <div className = 'form-center'>
-                <Button color="info">Metric System</Button>{" "}
-                <Button color="info">Imperial System</Button>
+                Formula: {return_value}
             </div>
         );
     }
@@ -221,9 +234,11 @@ class Interface extends React.Component{
                     className = 'form-center'
                     // onSubmit={this.handleMetricChange}
                 >
-                    <Button color="info" onSubmit={this.handleMetricChange}>Metric System</Button>
-                    <Button color="info" onSubmit={this.handleImperialChange}>Imperial System</Button>
+                    <Button color="info" onClick={this.handleMetricChange}>Metric System</Button>
+                    <Button color="info" onClick={this.handleImperialChange}>Imperial System</Button>
                 </div>
+                
+                <MetricImperial system={this.state.metric} />
 
                 <div>
                     <WeightComponent 
