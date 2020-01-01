@@ -19,7 +19,7 @@ import FormControl from 'react-bootstrap/FormControl';
 // Center align: Done
 // Validate input: Done
 // Use framework for UI: Done
-// Add option to toggle from metric to imperial system
+// Add option to toggle from metric to imperial system: Done
 
 
 class WeightComponent extends React.Component{
