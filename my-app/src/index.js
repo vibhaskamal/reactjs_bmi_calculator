@@ -35,7 +35,7 @@ class WeightComponent extends React.Component{
                         value={this.props.weight_value} 
                         onChange={this.props.onChange}
                     >
-                        Enter your weight (in kg)    
+                        Enter your weight     
                         <FormControl
                             placeholder="e.g. 50"
                         />
@@ -62,7 +62,7 @@ class HeightComponent extends React.Component{
                         value={this.props.height_value} 
                         onChange={this.props.onChange}
                     >
-                        Enter your height (in meter)
+                        Enter your height 
                         <FormControl
                             placeholder="e.g. 1.6"
                         />
