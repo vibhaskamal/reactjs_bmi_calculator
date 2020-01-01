@@ -8,9 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-// import { Button } from 'reactstrap';
-// import App from './App';
-// import * as serviceWorker from './serviceWorker';
 
 
 
@@ -41,7 +38,6 @@ class WeightComponent extends React.Component{
                         />
                     </InputGroup>
                 </label>
-                {/* {this.props.weight_value} */}
                 
             </form>
             
@@ -68,10 +64,7 @@ class HeightComponent extends React.Component{
                         />
                     </InputGroup>
 
-                    {/* Enter your height (in meter)
-                    <input type="text" name="name" value={this.props.height_value} onChange={this.props.onChange} /> */}
                 </label>
-                {/* {this.props.weight_value} */}
             </form>
             
         );
@@ -118,8 +111,6 @@ class MetricImperial extends React.Component{
 
 
 
-
-
 class Interface extends React.Component{
     constructor(props){
         super(props);
@@ -128,7 +119,6 @@ class Interface extends React.Component{
             height_val: undefined,
             bmi: undefined,
             metric: 1,
-            // imperial: 0,
         };
 
         this.handleWeightChange = this.handleWeightChange.bind(this);
@@ -142,7 +132,6 @@ class Interface extends React.Component{
         this.setState(
             {
                 metric: 1,
-                // imperial: 0,
             }
         );
     }
@@ -151,7 +140,6 @@ class Interface extends React.Component{
         this.setState(
             {
                 metric: 0,
-                // imperial: 1,
             }
         );
     }
@@ -187,11 +175,9 @@ class Interface extends React.Component{
 
     handleSubmit(event) {
         let bmi = this.calculateBMI();
-        // console.log(bmi);
 
         this.setState({bmi: 'BMI: ' + bmi});
         
-        // console.log('Done');
         
         event.preventDefault();
     }
@@ -232,7 +218,6 @@ class Interface extends React.Component{
             <div>
                 <div 
                     className = 'form-center'
-                    // onSubmit={this.handleMetricChange}
                 >
                     <Button color="info" onClick={this.handleMetricChange}>Metric System</Button>
                     <Button color="info" onClick={this.handleImperialChange}>Imperial System</Button>
@@ -258,7 +243,6 @@ class Interface extends React.Component{
                     className='form-center'
                     onSubmit={this.handleSubmit}
                 >
-                    {/* <input type="submit" value="Calculate BMI" /> */}
                     <Button variant="success" type="submit" value="Calculate BMI" >Calculate BMI</Button>
                 </form>
 
